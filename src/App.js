@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://pokeapi.co/api/v2/pokemon/1/').then(response => {
+    axios.get('https://pokeapi.co/api/v2/pokemon/149/').then(response => {
       // how i get the national pokedex number
       // console.log(response.data.game_indices[0].game_index)
       // how i get the name of the pokemon
