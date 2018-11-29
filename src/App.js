@@ -7,6 +7,7 @@ class App extends Component {
     super(props)
 
     this.state = {
+      pokemonURL: 'https://pokeapi.co/api/v2/pokemon/1/',
       types: [],
       pokemonNumber: '',
       pokemonName: '',
@@ -20,8 +21,12 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get('https://pokeapi.co/api/v2/pokemon/149/').then(response => {
+  componentDidMount = () => {
+    this.collectPokemon()
+  }
+
+  collectPokemon = () => {
+    axios.get(this.state.pokemonURL).then(response => {
       // how i get the national pokedex number
       // console.log(response.data.game_indices[0].game_index)
       // how i get the name of the pokemon
@@ -54,12 +59,13 @@ class App extends Component {
         pokemonWeight: roundedPokemonWeight
       })
     })
+
     axios.get('https://pokeapi.co/api/v2/pokemon//').then(response => {
-      console.log(response.data.results)
       this.setState({
         completePokemonList: response.data.results
       })
     })
+
     // axios
     //   .get('https://pokeapi.co/api/v2/evolution-chain/40/')
     //   .then(response => {
@@ -108,9 +114,16 @@ class App extends Component {
     }
   }
   updatePokemon = event => {
-    console.log('change')
-    console.log(event.target.dataset.url)
+    this.setState(
+      {
+        pokemonURL: event.target.value
+      },
+      () => {
+        this.collectPokemon()
+      }
+    )
   }
+
   render() {
     return (
       <h1>
@@ -187,7 +200,7 @@ class App extends Component {
               <br />
               <strong>Height :</strong> {this.state.pokemonHeight}'
               <br />
-              <strong>Weight :</strong> {this.state.pokemonHeight} lbs
+              <strong>Weight :</strong> {this.state.pokemonWeight} lbs
             </div>
             <div id="blueButtons1">
               <div className="blueButton" />
@@ -211,7 +224,7 @@ class App extends Component {
               <select onChange={this.updatePokemon} id="yellowBox1">
                 {this.state.completePokemonList.map(newPokemon => {
                   return (
-                    <option key={newPokemon.name} data-url={newPokemon.url}>
+                    <option key={newPokemon.name} value={newPokemon.url}>
                       {newPokemon.name}
                     </option>
                   )
