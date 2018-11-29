@@ -27,20 +27,6 @@ class App extends Component {
 
   collectPokemon = () => {
     axios.get(this.state.pokemonURL).then(response => {
-      // how i get the national pokedex number
-      // console.log(response.data.game_indices[0].game_index)
-      // how i get the name of the pokemon
-      // console.log(response.data.name)
-      // how i get the sprites
-      // console.log(response.data.sprites.front_default)
-      // console.log(response.data.sprites.front_shiny)
-      // how to found the height
-      // console.log(response.data.height)
-      // how i found the weight
-      // console.log(response.data.weight)
-      // how i get my types
-      // console.log(response.data.types)
-
       const pokemonWeightHgToLb = response.data.weight * 0.22046226
       const roundedPokemonWeight = Math.round(pokemonWeightHgToLb * 10) / 10
 
@@ -60,44 +46,13 @@ class App extends Component {
       })
     })
 
-    axios.get('https://pokeapi.co/api/v2/pokemon//').then(response => {
+    axios.get('https://pokeapi.co/api/v2/pokemon/').then(response => {
       this.setState({
-        completePokemonList: response.data.results
+        completePokemonList: response.data.results.slice(0, 386)
       })
     })
-
-    // axios
-    //   .get('https://pokeapi.co/api/v2/evolution-chain/40/')
-    //   .then(response => {
-    //
-    //evolves
-    // uses evolution-chain in api call
-    //
-    // if (response.data.chain.evolves_to[0].species.name) {
-    //   console.log(response.data.chain.evolves_to[0].species.name)
-    // }
-    // if (response.data.chain.evolves_to[0].evolves_to[0].species.name) {
-    //   console.log(
-    //     response.data.chain.evolves_to[0].evolves_to[0].species.name
-    //   )
-    // }
-    //
-    // code above works for up to 3 evolutions
-    // unless i write 12 of these this wont work well
-    // // forgot eevee has like 12 evolutions
-    //
-    // // need some sort of for loop to add .evolves_to[0] if
-    // // the array includes .evolves_to[0]
-    //
-    // console.log(response.data.chain.evolves_to[0])
-    //
-    // let chain = response.data.chain.evolves_to[0].check
-    // let check = 'species'
-    // if (chain.includes(check)) {
-    //   Console.log('IT DOES')
-    // }
-    // })
   }
+
   changeImageWhenClicked = () => {
     if (this.state.pokemonShinySprite === '') {
       return
@@ -201,6 +156,9 @@ class App extends Component {
               <strong>Height :</strong> {this.state.pokemonHeight}'
               <br />
               <strong>Weight :</strong> {this.state.pokemonWeight} lbs
+              <br />
+              <br />
+              <strong>Pokedex message :</strong> press image to see shiny
             </div>
             <div id="blueButtons1">
               <div className="blueButton" />
@@ -242,10 +200,5 @@ class App extends Component {
     )
   }
 }
-//
-// (condition) ? false : true
-// same as above
-// !(condition)
-//
 
 export default App
