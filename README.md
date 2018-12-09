@@ -4,8 +4,8 @@ In this assignment we were instructed to build a front end for an API of our cho
 <strong>Things learned</strong><br/>
 expanded and reinforced my knowledge into HTML, CSS, Javascript, and REACT<br/>
 how useful <i>Postman</i> is for checking api calls and response data<br/>
-expanded my knowledge in use of <i>Select</i> and <i>Option</i> tags
-algorithms for calculating the height and weight of the pokemon since they werent the the usual units we use in the US<br/>
+expanded my knowledge in use of <i>Select</i> and <i>Option</i> tags<br/>
+algorithms for calculating the height and weight of the pokemon to ft and pounds<br/>
 expanded my knowledge with fetching data using Axios library:<br/>
  - navigating through different kinds of response data<br/>
     - get<br/>
